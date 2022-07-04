@@ -1,0 +1,43 @@
+---
+title: "QMD Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+How to make tabs
+
+
+
+How to make columns 
+
+Below is the psuedo code to make two columns
+
+
+```{r, results='asis'}
+
+paste("""
+  :::::::::::::: {.columns}
+  ::: {.column width=\"50%\"}
+  
+  First column commentary, code chunks, images, graphs, and charts
+  
+  :::
+  ::: {.column width=\"50%\"}
+  
+  2nd column stuff
+  
+  :::
+  ::::::::::::::
+  
+  :::::::::::::: {.columns}
+  ::: {.column width=\"50%\"}
+""")
+
+```

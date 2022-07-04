@@ -1,0 +1,28 @@
+---
+title: "PySpark Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+
+## PySpark vs Spark SQL
+Or maybe, pyspark.sql vs. spark.sql?
+
+What is the difference between these two? 
+
+
+Spark SQL brings SQL to Spark, and this is brought to Python? 
+
+
+Very Useful Links:
+----
+  - https://sparkbyexamples.com/pyspark-tutorial/
+  - https://sparkbyexamples.com/category/pyspark/
+
