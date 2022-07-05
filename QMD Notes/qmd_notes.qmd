@@ -20,24 +20,20 @@ How to make columns
 Below is the psuedo code to make two columns
 
 
-```{r, results='asis'}
+```{md}
 
-paste("""
-  :::::::::::::: {.columns}
-  ::: {.column width=\"50%\"}
-  
-  First column commentary, code chunks, images, graphs, and charts
-  
-  :::
-  ::: {.column width=\"50%\"}
-  
-  2nd column stuff
-  
-  :::
-  ::::::::::::::
-  
-  :::::::::::::: {.columns}
-  ::: {.column width=\"50%\"}
-""")
+
+:::::::::::::: {.columns}
+::: {.column width=\"50%\"}
+
+First column commentary, code chunks, images, graphs, and charts
+
+:::
+::: {.column width=\"50%\"}
+
+2nd column stuff
+
+:::
+::::::::::::::
 
 ```

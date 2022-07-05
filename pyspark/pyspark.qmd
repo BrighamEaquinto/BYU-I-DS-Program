@@ -15,14 +15,46 @@ format:
 ## PySpark vs Spark SQL
 Or maybe, pyspark.sql vs. spark.sql?
 
-What is the difference between these two? 
+What are the difference between these two? 
 
 
-Spark SQL brings SQL to Spark, and this is brought to Python? 
+
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+__PySpark__
+
+PySpark has the SQL Functions module often imported as `F.funtion()`. It seems that is where most of the magic is with PySpark. 
+
+
+:::
+::: {.column width="50%"}
+
+__Spark SQL__
+
+
+I believe that spark.sql is a SQL port into ANSI SQL. Spark SQL brings SQL to Spark, and this is brought to Python? 
+
+This has all the things that SQL can do. PySpark has their own versions of SQL things. 
+
+:::
+::::::::::::::
+
+
+
+
+
+
+
 
 
 Very Useful Links:
 ----
-  - https://sparkbyexamples.com/pyspark-tutorial/
-  - https://sparkbyexamples.com/category/pyspark/
+
+1. [SparkbyExample SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
+2. [Read the Docs style from Apache.org SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
+3. [PySpark Overview w/ API Reference at bottom](https://sparkbyexamples.com/pyspark-tutorial/)
+4. [PySpark Tutorials](https://sparkbyexamples.com/category/pyspark/)
+
 

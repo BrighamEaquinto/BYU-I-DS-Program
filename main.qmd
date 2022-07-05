@@ -55,6 +55,7 @@ format:
     - Pandas
     - Numpy
     - Seaborn
+    - [Plotnine](https://plotnine.readthedocs.io/en/stable/api.html)
     - Sklearn 
     - Tensorflow/Keras 
     - Spacy
