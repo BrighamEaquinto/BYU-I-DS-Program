@@ -1,0 +1,26 @@
+---
+title: "CSE 450 Machine Learning Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+
+# CNN
+
+
+
+## Notes 
+
+
+
+## Project
+
+
+

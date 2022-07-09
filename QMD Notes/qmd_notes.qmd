@@ -20,8 +20,8 @@ How to make columns
 Below is the psuedo code to make two columns
 
 
-```{md}
-
+```{python}
+#| eval: false
 
 :::::::::::::: {.columns}
 ::: {.column width=\"50%\"}

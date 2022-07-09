@@ -16,8 +16,7 @@ format:
 ---
 
 
-
-# Tools Learned
+### Tools Learned 
 
 ----
 
@@ -57,11 +56,10 @@ format:
     - Seaborn
     - [Plotnine](https://plotnine.readthedocs.io/en/stable/api.html)
     - Sklearn 
-    - Tensorflow/Keras 
+    - Tensorflow & Keras 
     - Spacy
     - Gensim 
-    - Pyspark
-    - Spark SQL
+    - [Pyspark & Spark SQL](C:\Users\brigh\OneDrive\Documents\Git Repositories\BYU-I DS Program\pyspark\pyspark.html) 
 
 :::
 ::::::::::::::
@@ -92,7 +90,6 @@ format:
 - DS 498R Internship
 - DS 499 Senior Project in Data Science 
 - MATH 325 Intermediate Statistics 
-- MATH 221A Business Statistics
 - MATH 425 Applied Linear Regression
 - MATH 488 Statistical and Data Science Consulting
 - CSE 450 Machine Learning 

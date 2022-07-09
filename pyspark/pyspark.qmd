@@ -1,5 +1,5 @@
 ---
-title: "PySpark Notes"
+title: "PySpark vs Spark SQL"
 format: 
   html:
     toc: false
@@ -11,27 +11,25 @@ format:
     theme: cerulean
 ---
 
-
-## PySpark vs Spark SQL
 Or maybe, pyspark.sql vs. spark.sql?
 
 What are the difference between these two? 
 
-
+<!-- Here starts the section of the comparisons of the two in column format -->
 
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
 
-__PySpark__
+<p align="center">__PySpark__</p>
 
-PySpark has the SQL Functions module often imported as `F.funtion()`. It seems that is where most of the magic is with PySpark. 
+PySpark has the SQL Functions module often imported as `F.function()`. It seems that is where most of the magic is with PySpark. 
 
 
 :::
 ::: {.column width="50%"}
 
-__Spark SQL__
+<p align="center">__Spark SQL__</p>
 
 
 I believe that spark.sql is a SQL port into ANSI SQL. Spark SQL brings SQL to Spark, and this is brought to Python? 
@@ -42,19 +40,50 @@ This has all the things that SQL can do. PySpark has their own versions of SQL t
 ::::::::::::::
 
 
+<h4 align="center">Very Useful Links</h4>
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+
+- [PySpark Overview w/ API Reference at bottom](https://sparkbyexamples.com/pyspark-tutorial/)
+- [PySpark Tutorials](https://sparkbyexamples.com/category/pyspark/)
+
+:::
+::: {.column width="50%"}
 
 
 
+- [SparkbyExample SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
+- [Read the Docs-esk style from Apache.org SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
+
+:::
+::::::::::::::
 
 
 
+### Window Functions
 
-Very Useful Links:
-----
 
-1. [SparkbyExample SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
-2. [Read the Docs style from Apache.org SQL Functions](https://sparkbyexamples.com/spark/spark-sql-functions/)
-3. [PySpark Overview w/ API Reference at bottom](https://sparkbyexamples.com/pyspark-tutorial/)
-4. [PySpark Tutorials](https://sparkbyexamples.com/category/pyspark/)
+The dplyr equivalent of a window function is a group_by() %>% mutate(). This keeps all the values where group_by() %>% summarize() does not. 
 
+Partioning and grouping is similar, but different. Instead of gathering data into groups and then summarizing a value by groups and shorten this down into rows unique rows.
+
+Would partioning work for making a rolling window?
+
+The code to do it in PySpark is 
+
+```{python}
+#| eval: false
+
+from pyspark.sql import Window
+from pyspark.sql import functions as F
+
+windowval = (Window.partitionBy('class').orderBy('time')
+             .rowsBetween(Window.unboundedPreceding, 0))
+df_w_cumsum = df.withColumn('cum_sum', F.sum('value').over(windowval))
+df_w_cumsum.show()
+
+
+```
 
