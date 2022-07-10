@@ -87,3 +87,25 @@ df_w_cumsum.show()
 
 ```
 
+
+### MLlib
+
+
+Now, the Spark ML library only works with numeric data. But we still want to use the Sex and the Embarked column. For that, we will need to encode them. To do it let’s use something called the StringIndexer:
+
+
+```{python}
+from pyspark.ml.feature import StringIndexer
+
+dataset = StringIndexer(
+    inputCol='Sex', 
+    outputCol='Gender', 
+    handleInvalid='keep').fit(dataset).transform(dataset)
+
+dataset = StringIndexer(
+    inputCol='Embarked', 
+    outputCol='Boarded', 
+    handleInvalid='keep').fit(dataset).transform(dataset)
+
+dataset.show()
+```
