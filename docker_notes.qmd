@@ -1,0 +1,20 @@
+---
+title: "Docker"
+author: "Brigham Eaquinto"
+date: "July 2022"
+format: 
+  html:
+    toc: true 
+    toc-depth: 5
+    toc-location: right
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+[Official Documentation](https://docs.docker.com/)
+
+
