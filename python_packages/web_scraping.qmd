@@ -1,0 +1,14 @@
+
+
+
+Two packages to use for webscraping, Selenium and Beautiful Soup.
+
+Selenium Dos: 
+- https://www.selenium.dev/documentation/
+- https://www.selenium.dev/selenium/docs/api/py/api.html
+- [Unofficial Docs](https://selenium-python.readthedocs.io/)
+
+Beautiful Soup Docs:
+- [Crummy.com](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [ReadtheDocs](https://beautiful-soup-4.readthedocs.io/en/latest/)
+- [Other Crummy.com](https://www.crummy.com/software/BeautifulSoup/)

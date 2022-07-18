@@ -1,0 +1,54 @@
+---
+title: "Sklearn Pipelines"
+format: html
+---
+
+
+```{python}
+import sckit-learn as 
+import pandas as pd
+
+iris = (
+    pd.read_csv("https://gist.github.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv")
+    .rename(columns = 
+        {'sepal_length':"Sepal.Length", 
+        'sepal_width':"Sepal.Width", 
+        'petal_length':"Petal.Length", 
+        'petal_width':"Petal.Width",
+        'species':"Species"
+        })
+)
+
+```
+
+
+```{python}
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import roc_auc_score
+
+features = iris.drop(["Species"], axis = 1) 
+target = iris.filter(["Species"], axis = 1)
+
+X_train, X_test, y_train, y_test = train_test_split(features, target, random_state=0)
+pipe = Pipeline([('scaler', StandardScaler()), ('svc', SVC())])
+# The pipeline can be used as any other estimator
+# and avoids leaking the test set into the train set
+pipe.fit(X_train, y_train)
+
+pipe.accuracy_score(X_test, y_test)
+pipe.precision_score(X_test, y_test)
+pipe.recall_score(X_test, y_test)
+pipe.f1_score(X_test, y_test)
+pipe.roc_auc_score(X_test, y_test)
+```
+
+
