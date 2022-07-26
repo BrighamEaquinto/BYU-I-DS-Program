@@ -27,6 +27,7 @@ format:
     - R 
     - Python
     - SQL 
+    - DAX
 
 :::
 ::: {.column width="50%"}

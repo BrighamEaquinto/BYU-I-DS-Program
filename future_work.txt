@@ -1,0 +1,5 @@
+Plotly: 
+- https://dash.plotly.com/
+- https://dash.gallery/Portal/
+- https://plotly.com/python/bar-charts/
+- https://plotly.com/python-api-reference/generated/plotly.express.bar.html
