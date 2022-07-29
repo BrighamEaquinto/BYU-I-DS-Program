@@ -60,7 +60,7 @@ format:
     - Tensorflow & Keras 
     - Spacy
     - Gensim 
-    - [Pyspark & Spark SQL](C:\Users\brigh\OneDrive\Documents\Git Repositories\BYU-I DS Program\pyspark\pyspark.html) 
+    - [Pyspark & Spark SQL](pyspark\pyspark.html) 
 
 :::
 ::::::::::::::
