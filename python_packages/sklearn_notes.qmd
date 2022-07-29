@@ -1,11 +1,22 @@
 ---
-title: "Sklearn Pipelines"
-format: html
+title: "Sklearn"
+date: "July 2022"
+format: 
+  html:
+    toc: true 
+    toc-depth: 5
+    toc-location: right
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
 ---
 
 
 ```{python}
-import sckit-learn as 
+import sklearn
 import pandas as pd
 
 iris = (
@@ -44,11 +55,14 @@ pipe = Pipeline([('scaler', StandardScaler()), ('svc', SVC())])
 # and avoids leaking the test set into the train set
 pipe.fit(X_train, y_train)
 
-pipe.accuracy_score(X_test, y_test)
-pipe.precision_score(X_test, y_test)
-pipe.recall_score(X_test, y_test)
-pipe.f1_score(X_test, y_test)
-pipe.roc_auc_score(X_test, y_test)
+# pipe.accuracy_score(X_test, y_test)
+# pipe.precision_score(X_test, y_test)
+# pipe.recall_score(X_test, y_test)
+# pipe.f1_score(X_test, y_test)
+# pipe.roc_auc_score(X_test, y_test)
 ```
 
 
+### One Hot Encoding 
+
+Do not use sklearn's `sklearn.preprocessing.OneHotEncoder`. Use pandas's `get_dummies()`
