@@ -17,9 +17,6 @@ website:
     search: true
     alignment: right
     collapse-level: 1
-    tools:
-      - icon: github
-        href: https://github.com/BrighamEaquinto
     contents:
       - section: "Basics"
         contents:
@@ -31,6 +28,14 @@ website:
           - layout.qmd
           - layout-knitr.qmd
           - layout-jupyter.qmd
+  page-footer:
+    background: white
+    center: 
+      - icon: github
+        href: https://github.com/BrighamEaquinto
+      - icon: linkedin
+        href: https://www.linkedin.com/in/brighameaquinto/
+        
 
 format:
   html:
