@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: _output
+  preview:
+    port: 3141
+
+website:
+  title: "mysite"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+  sidebar:
+    title: "Title here"
+    style: "docked"
+    search: true
+    alignment: right
+    collapse-level: 1
+    tools:
+      - icon: github
+        href: https://github.com/BrighamEaquinto
+    contents:
+      - section: "Basics"
+        contents:
+          - index.qmd
+          - basics-knitr.qmd
+          - basics-jupyter.qmd
+      - section: "Layout"
+        contents:
+          - layout.qmd
+          - layout-knitr.qmd
+          - layout-jupyter.qmd
+
+format:
+  html:
+    theme: cerulean
+    css: styles.css
+    toc: true
+
+
+

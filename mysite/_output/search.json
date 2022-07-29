@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science Learned from BYU-I",
+    "section": "",
+    "text": "Curriculum\n\nNoteable Data Science Classes\n\nCIT 111 Introduction to Databases\nCIT 225 Database Design & Development\nDS 250 Data Science Programming\nDS 350 Data Wrangling and Visualization\nDS 460 Big Data Programming & Analytics\nDS 498R Internship\nDS 499 Senior Project in Data Science\nMATH 325 Intermediate Statistics\nMATH 425 Applied Linear Regression\nMATH 488 Statistical and Data Science Consulting\nCSE 450 Machine Learning\nBA 315 Business Analytics\n\n\n\nNotable Math Classes\n\nMATH 112X Calculus 1\nMATH 215 Multivariable Calculus\nMATH 316 Differential Equations and Linear Algebra\nMATH 341 Linear Algebra\nMATH 423 Probability and Statistics"
+  }
+]
