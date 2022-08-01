@@ -7,27 +7,12 @@ format:
     toc: true 
     toc-depth: 5
     toc-location: right
-    code-tools: false  
-    code-copy: false
+    code-tools: true  
+    code-copy: true
     code-fold: false
     self-contained: true
     anchor-sections: false
     theme: cerulean
-website:
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - section: "Basics"
-        contents:
-          - index.qmd
-          - basics-knitr.qmd
-          - basics-jupyter.qmd
-      - section: "Layout"
-        contents:
-          - layout.qmd
-          - layout-knitr.qmd
-          - layout-jupyter.qmd
 ---
 
 
@@ -83,7 +68,7 @@ website:
 
 
 - Reporting Tools: 
-    - [QMD](QMD Notes\qmd_notes.html) & RMD
+    - [QMD](C:\Users\brigh\OneDrive\Documents\Git Repositories\BYU-I DS Program\QMD Notes\qmd_notes.html) & RMD
     - Streamlit Dashboard 
     - Power Bi Reports
  

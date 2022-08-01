@@ -3,9 +3,3 @@ Plotly:
 - https://dash.gallery/Portal/
 - https://plotly.com/python/bar-charts/
 - https://plotly.com/python-api-reference/generated/plotly.express.bar.html
-
-
-Future Work: 
-- Add header like https://byuidatascience.github.io/
-- home button
-- left side bar with navigation
