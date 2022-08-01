@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "BYU-I Data Science"
+  title: "BYU-I DS Program"
   navbar:
     background: primary
     left:
