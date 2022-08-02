@@ -83,6 +83,7 @@ What is this concept of 'context in DAX formulas'??
 
 #### The Calculate Function: 
 - the first argument is a measure or calculation to be evaluated. After that argument, optional filters are allowed.
+- I think that I was using `calculate` wrong when I was working with Mike. I think the first argument _has_ to be a aggregate, then filters later.
 
 ### Query Context: 
 The query context is not covered in this course
@@ -106,10 +107,18 @@ RETURN DIVIDE([GoldVolume21] - GoldVolume20, GoldVolume20)
 
 
 
+## Chapter 3: Working with Dates
 
 
+
+
+
+
+
+<br><br>
 
 Tennyson Notes:
+
 - based on lots of learning at home (politics, history, econ)
 - 6 bigs institutions that control culture ( ed, tech, hollywood, govt, military, ...)
 - spreading communism through the world. Not from top down, culture would transform govenment. Politics are down stream of culture
@@ -120,7 +129,6 @@ Tennyson Notes:
 - what about not mon-fri school so that there is more for family time? Three days a week?
 - wall builders
 - Case study on the 9-6 schools? Sleep there and everythign
-
 - Knowing all of this, I need to start a school.
 - Tool parents too. 
 - NAtalie Cline state board of education
@@ -131,9 +139,7 @@ Tennyson Notes:
   - funding
   - location
   - ciriculum: 
-    - 
 - texas school with Glen Beck's wife
 get funding from rich conservatives in Mapleton
 - I want to make my own textbooks to be vertically integrated. 
 - "I want you to be just as invested in your children's education as you are in your full time job."
-- 
