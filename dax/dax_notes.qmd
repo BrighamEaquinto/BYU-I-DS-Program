@@ -112,6 +112,9 @@ RETURN DIVIDE([GoldVolume21] - GoldVolume20, GoldVolume20)
 
 
 
+# Power BI Notes
+
+- what the difference between editing decimals in Power Query Editor and in the Data view tab?
 
 
 
