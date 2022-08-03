@@ -36,4 +36,4 @@ First column commentary, code chunks, images, graphs, and charts
 :::
 ::::::::::::::
 
-``` 
+```

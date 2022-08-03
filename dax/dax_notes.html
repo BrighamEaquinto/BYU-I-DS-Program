@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>PySpark vs Spark SQL</title>
+<title>DAX Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2563,15 +2563,41 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#measures" id="toc-measures" class="nav-link active" data-scroll-target="#measures">Measures</a>
+  <ul class="collapse">
+  <li><a href="#calculate" id="toc-calculate" class="nav-link" data-scroll-target="#calculate">CALCULATE()</a></li>
+  </ul></li>
+  <li><a href="#datacamp-course-introduction-to-dax-in-power-bi" id="toc-datacamp-course-introduction-to-dax-in-power-bi" class="nav-link" data-scroll-target="#datacamp-course-introduction-to-dax-in-power-bi">DataCamp Course: Introduction to DAX in Power BI</a>
+  <ul class="collapse">
+  <li><a href="#chapter-1-getting-started-with-dax" id="toc-chapter-1-getting-started-with-dax" class="nav-link" data-scroll-target="#chapter-1-getting-started-with-dax">Chapter 1: Getting Started with DAX</a></li>
+  <li><a href="#chapter-2-context-in-dax-formulas" id="toc-chapter-2-context-in-dax-formulas" class="nav-link" data-scroll-target="#chapter-2-context-in-dax-formulas">Chapter 2: Context in DAX Formulas</a>
+  <ul class="collapse">
+  <li><a href="#row-context" id="toc-row-context" class="nav-link" data-scroll-target="#row-context">Row Context:</a></li>
+  <li><a href="#filter-context" id="toc-filter-context" class="nav-link" data-scroll-target="#filter-context">Filter Context:</a>
+  <ul class="collapse">
+  <li><a href="#the-calculate-function" id="toc-the-calculate-function" class="nav-link" data-scroll-target="#the-calculate-function">The Calculate Function:</a></li>
+  </ul></li>
+  <li><a href="#query-context" id="toc-query-context" class="nav-link" data-scroll-target="#query-context">Query Context:</a></li>
+  <li><a href="#making-variables-in-dax" id="toc-making-variables-in-dax" class="nav-link" data-scroll-target="#making-variables-in-dax">Making Variables in DAX</a></li>
+  </ul></li>
+  <li><a href="#chapter-3-working-with-dates" id="toc-chapter-3-working-with-dates" class="nav-link" data-scroll-target="#chapter-3-working-with-dates">Chapter 3: Working with Dates</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">PySpark vs Spark SQL</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">DAX Notes</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -2587,56 +2613,133 @@ vertical-align: -.125em;
 
 </header>
 
-<p>Or maybe, pyspark.sql vs.&nbsp;spark.sql?</p>
-<p>What are the difference between these two?</p>
-<!-- Here starts the section of the comparisons of the two in column format -->
 <div class="columns">
 <div class="column" style="width:50%;">
-<p align="center">
-<strong>PySpark</strong>
-</p>
-<p>PySpark has the SQL Functions module often imported as <code>F.function()</code>. It seems that is where most of the magic is with PySpark.</p>
-</div><div class="column" style="width:50%;">
-<p align="center">
-<strong>Spark SQL</strong>
-</p>
-<p>I believe that spark.sql is a SQL port into ANSI SQL. Spark SQL brings SQL to Spark, and this is brought to Python?</p>
-<p>This has all the things that SQL can do. PySpark has their own versions of SQL things.</p>
-</div>
-</div>
-<h4 align="center">
-Very Useful Links
-</h4>
-<div class="columns">
-<div class="column" style="width:50%;">
+<section id="calculated-columns" class="level3">
+<h3 data-anchor-id="calculated-columns">Calculated Columns</h3>
+<p>Calculated columns are columns (similar to dplyr’s <code>mutate()</code>).</p>
 <ul>
-<li><a href="https://sparkbyexamples.com/pyspark-tutorial/">PySpark Overview w/ API Reference at bottom</a></li>
-<li><a href="https://sparkbyexamples.com/category/pyspark/">PySpark Tutorials</a></li>
+<li>Used for evaluating each row</li>
+<li>Adds a new column to an existing table</li>
+<li>Calculated at data load and when the data is refreshed</li>
+<li>Returns one value per row</li>
+<li>Stored in memory; pre-calculated and appended to each row in a table and stored inside the data model</li>
+<li>Evaluated at row level</li>
+<li>Profit = Revenue - Cost is an example of a calculated column</li>
 </ul>
+</section>
 </div><div class="column" style="width:50%;">
+<section id="calculated-measures" class="level3">
+<h3 data-anchor-id="calculated-measures">Calculated Measures</h3>
+<p>Measures are single numbers (like dplyr’s <code>summary()</code>)</p>
 <ul>
-<li><a href="https://sparkbyexamples.com/spark/spark-sql-functions/">SparkbyExample SQL Functions</a></li>
-<li><a href="https://sparkbyexamples.com/spark/spark-sql-functions/">Read the Docs-esk style from Apache.org SQL Functions</a></li>
+<li>For aggregating multiple rows</li>
+<li>Results in a nother field that you can add to a visualization</li>
+<li>Calculated at query time as you interact and filter</li>
+<li>Not stored in memory; makes use of CPU and is recalculated each time a filter/slicer changes</li>
+<li>Evaluated based on the set of data selected i.e.&nbsp;filters and slicers being applied in the report.</li>
+<li>SUM(Sales) is an example of a calculated measure</li>
 </ul>
+</section>
 </div>
 </div>
-<section id="window-functions" class="level3">
-<h3 data-anchor-id="window-functions">Window Functions</h3>
-<p>The dplyr equivalent of a window function is a group_by() %&gt;% mutate(). This keeps all the values where group_by() %&gt;% summarize() does not.</p>
-<p>Partioning and grouping is similar, but different. Instead of gathering data into groups and then summarizing a value by groups and shorten this down into rows unique rows.</p>
-<p>Would partioning work for making a rolling window?</p>
-<p>The code to do it in PySpark is</p>
+<section id="measures" class="level2">
+<h2 data-anchor-id="measures">Measures</h2>
+<ul>
+<li>use <code>VAR</code> to declare variables</li>
+<li>CTRL + / to make a comment //</li>
+</ul>
+<section id="calculate" class="level4">
+<h4 data-anchor-id="calculate">CALCULATE()</h4>
+<ul>
+<li>The arguments to <code>CALCULATE()</code> are tables</li>
+</ul>
+</section>
+</section>
+<section id="datacamp-course-introduction-to-dax-in-power-bi" class="level1">
+<h1>DataCamp Course: Introduction to DAX in Power BI</h1>
+<section id="chapter-1-getting-started-with-dax" class="level2">
+<h2 data-anchor-id="chapter-1-getting-started-with-dax">Chapter 1: Getting Started with DAX</h2>
+</section>
+<section id="chapter-2-context-in-dax-formulas" class="level2">
+<h2 data-anchor-id="chapter-2-context-in-dax-formulas">Chapter 2: Context in DAX Formulas</h2>
+<p>What is this concept of ‘context in DAX formulas’?? - three types of context: row, filter, and query</p>
+<section id="row-context" class="level3">
+<h3 data-anchor-id="row-context">Row Context:</h3>
+<ul>
+<li>I think row context is the same effect as a calculated column because it iterates through each row
+<ul>
+<li>this makes me wonder if the iterator functions should replace calculated columns all together</li>
+</ul></li>
+<li>You can tell they’re iterator functions if there is an x at the end of the function name like <code>SUMX()</code></li>
+</ul>
+</section>
+<section id="filter-context" class="level3">
+<h3 data-anchor-id="filter-context">Filter Context:</h3>
+<ul>
+<li>Filter context is a set of filters that have been applied before the calculation is carried out</li>
+</ul>
+<section id="the-calculate-function" class="level4">
+<h4 data-anchor-id="the-calculate-function">The Calculate Function:</h4>
+<ul>
+<li>the first argument is a measure or calculation to be evaluated. After that argument, optional filters are allowed.</li>
+<li>I think that I was using <code>calculate</code> wrong when I was working with Mike. I think the first argument <em>has</em> to be a aggregate, then filters later.</li>
+</ul>
+</section>
+</section>
+<section id="query-context" class="level3">
+<h3 data-anchor-id="query-context">Query Context:</h3>
+<p>The query context is not covered in this course</p>
+</section>
+<section id="making-variables-in-dax" class="level3">
+<h3 data-anchor-id="making-variables-in-dax">Making Variables in DAX</h3>
+<p>To make variables</p>
+<p>Here’s an example of using variables in a DAX measure</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> Window</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> functions <span class="im">as</span> F</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>windowval <span class="op">=</span> (Window.partitionBy(<span class="st">'class'</span>).orderBy(<span class="st">'time'</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>             .rowsBetween(Window.unboundedPreceding, <span class="dv">0</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df_w_cumsum <span class="op">=</span> df.withColumn(<span class="st">'cum_sum'</span>, F.<span class="bu">sum</span>(<span class="st">'value'</span>).over(windowval))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df_w_cumsum.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Gold21vs20 <span class="op">=</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>VAR GoldVolume20 <span class="op">=</span> CALCULATE (</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  SUM ( Commodities[Volume] ), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  FILTER ( Commodities, Commodities[Symbol] <span class="op">=</span> <span class="st">"Gold"</span> ), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Filter ( Commodities, YEAR ( Commodities[Date] ) <span class="op">=</span> <span class="dv">2020</span> )</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>RETURN DIVIDE([GoldVolume21] <span class="op">-</span> GoldVolume20, GoldVolume20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+<section id="chapter-3-working-with-dates" class="level2">
+<h2 data-anchor-id="chapter-3-working-with-dates">Chapter 3: Working with Dates</h2>
+<p><br><br></p>
+<p>Tennyson Notes:</p>
+<ul>
+<li>based on lots of learning at home (politics, history, econ)</li>
+<li>6 bigs institutions that control culture ( ed, tech, hollywood, govt, military, …)</li>
+<li>spreading communism through the world. Not from top down, culture would transform govenment. Politics are down stream of culture</li>
+<li>Start in ed for youth and holywood</li>
+<li>People like stories rather than facts</li>
+<li>high school started in 1920 and for only 4 months of the year</li>
+<li>Not age based grades: 8 levels. Dependent on mastery of the level. Genreally on level per year</li>
+<li>what about not mon-fri school so that there is more for family time? Three days a week?</li>
+<li>wall builders</li>
+<li>Case study on the 9-6 schools? Sleep there and everythign</li>
+<li>Knowing all of this, I need to start a school.</li>
+<li>Tool parents too.</li>
+<li>NAtalie Cline state board of education</li>
+<li>80 emails. BYU woke administration.</li>
+<li>Liahona and American Heritage</li>
+<li>Is this your fulltime gig right now?</li>
+<li>Topics:
+<ul>
+<li>funding</li>
+<li>location</li>
+<li>ciriculum:</li>
+</ul></li>
+<li>texas school with Glen Beck’s wife get funding from rich conservatives in Mapleton</li>
+<li>I want to make my own textbooks to be vertically integrated.</li>
+<li>“I want you to be just as invested in your children’s education as you are in your full time job.”</li>
+</ul>
 <!-- -->
 
+</section>
 </section>
 
 </main>
@@ -2762,93 +2865,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "PySpark vs Spark SQL"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "DAX Notes"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true  </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    anchor-sections: false</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cerulean</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Or maybe, pyspark.sql vs. spark.sql?</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 5</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true  </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    anchor-sections: false</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cerulean</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>What are the difference between these two? </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Here starts the section of the comparisons of the two in column format --&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>:::::::::::::: {.columns}</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>:::::::::::::: {.columns}</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calculated Columns</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">align</span><span class="ot">=</span><span class="st">"center"</span><span class="kw">&gt;</span>__PySpark__<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>Calculated columns are columns (similar to dplyr's <span class="in">`mutate()`</span>).</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>PySpark has the SQL Functions module often imported as <span class="in">`F.function()`</span>. It seems that is where most of the magic is with PySpark. </span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">align</span><span class="ot">=</span><span class="st">"center"</span><span class="kw">&gt;</span>__Spark SQL__<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Used for evaluating each row</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adds a new column to an existing table</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculated at data load and when the data is refreshed</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Returns one value per row</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Stored in memory; pre-calculated and appended to each row in a table and stored inside the data model</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Evaluated at row level</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Profit = Revenue - Cost is an example of a calculated column </span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>I believe that spark.sql is a SQL port into ANSI SQL. Spark SQL brings SQL to Spark, and this is brought to Python? </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>This has all the things that SQL can do. PySpark has their own versions of SQL things. </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calculated Measures</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>::::::::::::::</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h4</span> <span class="er">align</span><span class="ot">=</span><span class="st">"center"</span><span class="kw">&gt;</span>Very Useful Links<span class="kw">&lt;/h4&gt;</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>:::::::::::::: {.columns}</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>Measures are single numbers (like dplyr's <span class="in">`summary()`</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For aggregating multiple rows</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Results in a nother field that you can add to a visualization</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Calculated at query time as you interact and filter</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Not stored in memory; makes use of CPU and is recalculated each time a filter/slicer changes</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Evaluated based on the set of data selected i.e. filters and slicers being applied in the report.</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SUM(Sales) is an example of a calculated measure</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">PySpark Overview w/ API Reference at bottom</span><span class="co">](https://sparkbyexamples.com/pyspark-tutorial/)</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">PySpark Tutorials</span><span class="co">](https://sparkbyexamples.com/category/pyspark/)</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>::::::::::::::</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Measures</span></span>
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">SparkbyExample SQL Functions</span><span class="co">](https://sparkbyexamples.com/spark/spark-sql-functions/)</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Read the Docs-esk style from Apache.org SQL Functions</span><span class="co">](https://sparkbyexamples.com/spark/spark-sql-functions/)</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>::::::::::::::</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>use <span class="in">`VAR`</span> to declare variables</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CTRL + / to make a comment //</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="fu">#### CALCULATE()</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The arguments to <span class="in">`CALCULATE()`</span> are tables</span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Window Functions</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># DataCamp Course: Introduction to DAX in Power BI</span></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>The dplyr equivalent of a window function is a group_by() %&gt;% mutate(). This keeps all the values where group_by() %&gt;% summarize() does not. </span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chapter 1: Getting Started with DAX</span></span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>Partioning and grouping is similar, but different. Instead of gathering data into groups and then summarizing a value by groups and shorten this down into rows unique rows.</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>Would partioning work for making a rolling window?</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>The code to do it in PySpark is </span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chapter 2: Context in DAX Formulas</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>What is this concept of 'context in DAX formulas'??</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>three types of context: row, filter, and query</span>
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Row Context:</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I think row context is the same effect as a calculated column because it iterates through each row</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>this makes me wonder if the iterator functions should replace calculated columns all together</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can tell they're iterator functions if there is an x at the end of the function name like <span class="in">`SUMX()`</span></span>
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> Window</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> functions <span class="im">as</span> F</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Filter Context: </span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Filter context is a set of filters that have been applied before the calculation is carried out</span>
 <span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>windowval <span class="op">=</span> (Window.partitionBy(<span class="st">'class'</span>).orderBy(<span class="st">'time'</span>)</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>             .rowsBetween(Window.unboundedPreceding, <span class="dv">0</span>))</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>df_w_cumsum <span class="op">=</span> df.withColumn(<span class="st">'cum_sum'</span>, F.<span class="bu">sum</span>(<span class="st">'value'</span>).over(windowval))</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>df_w_cumsum.show()</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="fu">#### The Calculate Function: </span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the first argument is a measure or calculation to be evaluated. After that argument, optional filters are allowed.</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I think that I was using <span class="in">`calculate`</span> wrong when I was working with Mike. I think the first argument _has_ to be a aggregate, then filters later.</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### Query Context: </span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>The query context is not covered in this course</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Making Variables in DAX</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>To make variables </span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>Here's an example of using variables in a DAX measure</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>Gold21vs20 <span class="op">=</span> </span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>VAR GoldVolume20 <span class="op">=</span> CALCULATE (</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  SUM ( Commodities[Volume] ), </span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  FILTER ( Commodities, Commodities[Symbol] <span class="op">=</span> <span class="st">"Gold"</span> ), </span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  Filter ( Commodities, YEAR ( Commodities[Date] ) <span class="op">=</span> <span class="dv">2020</span> )</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>RETURN DIVIDE([GoldVolume21] <span class="op">-</span> GoldVolume20, GoldVolume20)</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## Chapter 3: Working with Dates</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br&gt;&lt;br&gt;</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>Tennyson Notes:</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>based on lots of learning at home (politics, history, econ)</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6 bigs institutions that control culture ( ed, tech, hollywood, govt, military, ...)</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>spreading communism through the world. Not from top down, culture would transform govenment. Politics are down stream of culture</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Start in ed for youth and holywood</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>People like stories rather than facts</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>high school started in 1920 and for only 4 months of the year</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Not age based grades: 8 levels. Dependent on mastery of the level. Genreally on level per year</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>what about not mon-fri school so that there is more for family time? Three days a week?</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>wall builders</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Case study on the 9-6 schools? Sleep there and everythign</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Knowing all of this, I need to start a school.</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tool parents too. </span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>NAtalie Cline state board of education</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>80 emails. BYU woke administration. </span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Liahona and American Heritage</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is this your fulltime gig right now? </span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Topics: </span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>funding</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>location</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>ciriculum: </span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>texas school with Glen Beck's wife</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>get funding from rich conservatives in Mapleton</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I want to make my own textbooks to be vertically integrated. </span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"I want you to be just as invested in your children's education as you are in your full time job."</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
