@@ -110,7 +110,8 @@ RETURN DIVIDE([GoldVolume21] - GoldVolume20, GoldVolume20)
 ## Chapter 3: Working with Dates
 
 
-
+Troubles on -> "Expanding the Date Table"
+Troubles on -> "Creating Your First Quick Measure"
 
 
 

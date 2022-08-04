@@ -52,15 +52,15 @@ format:
 ::: {.column width="50%"}
 
 - Python Packages
-    - Pandas
-    - Numpy
-    - Seaborn
-    - [Plotnine](https://plotnine.readthedocs.io/en/stable/api.html)
-    - Sklearn 
-    - Tensorflow & Keras 
-    - Spacy
-    - Gensim 
-    - [Pyspark & Spark SQL](pyspark\pyspark.html) 
+    - [Pyspark & Spark SQL](python_packages\spark\pyspark_notes.qmd)
+    - [Tensorflow & Keras](python_packages\tensorflow_keras_notes.qmd) 
+    - [Sklearn](python_packages\sklearn_notes.qmd) 
+    - [Pandas](python_packages\pandas_notes.qmd)
+    - [Numpy](python_packages\gensim_notes.qmd)
+    - [Seaborn](python_packages\seaborn_notes.qmd)
+    - [Plotnine](python_packages\plotnine_notes.qmd)
+    - [Spacy](python_packages\seaborn_notes.qmd)
+    - [Gensim](python_packages\gensim_notes.html) 
 
 :::
 ::::::::::::::
@@ -68,9 +68,9 @@ format:
 
 
 - Reporting Tools: 
-    - [QMD](C:\Users\brigh\OneDrive\Documents\Git Repositories\BYU-I DS Program\QMD Notes\qmd_notes.html) & RMD
+    - [QMD](qmd/qmd_notes.html)
     - Streamlit Dashboard 
-    - Power Bi Reports
+    - Power BI Reports
  
 
 - __Others__
