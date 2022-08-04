@@ -113,6 +113,9 @@ RETURN DIVIDE([GoldVolume21] - GoldVolume20, GoldVolume20)
 Troubles on -> "Expanding the Date Table"
 Troubles on -> "Creating Your First Quick Measure"
 
+# Power BI Notes
+
+- what the difference between editing decimals in Power Query Editor and in the Data view tab?
 
 
 
