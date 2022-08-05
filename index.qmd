@@ -54,12 +54,12 @@ format:
 - Python Packages
     - [Pyspark & Spark SQL](python_packages\spark\pyspark_notes.html)
     - [Tensorflow & Keras](python_packages\tensorflow_keras_notes.html) 
-    - [Sklearn](python_packages\sklearn_notes.html) 
-    - [Pandas](python_packages\pandas_notes.html)
+    - [Sklearn](python_packages\sklearn_notes.qmd) 
+    - [Pandas](python_packages\pandas_notes.qmd)
     - [Numpy](python_packages\numpy_notes.html)
     - [Seaborn](python_packages\seaborn_notes.html)
-    - [Plotnine](python_packages/plotnine_notes.html)
-    - [Spacy](python_packages/spacy_notes.html)
+    - [Plotnine](python_packages\plotnine_notes.html)
+    - [Spacy](python_packages\spacy_notes.html)
     - [Gensim](python_packages\gensim_notes.html) 
 
 :::
