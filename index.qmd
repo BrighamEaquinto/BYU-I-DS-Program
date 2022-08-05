@@ -76,7 +76,6 @@ format:
 - __Others__
     - IDAS 
     - Pathway Internship 
-    - Other Internship
     - DSS
 
  
