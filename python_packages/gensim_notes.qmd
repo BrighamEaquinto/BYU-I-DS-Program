@@ -1,1 +1,14 @@
+---
+title: "Gensim Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
 testing gensim

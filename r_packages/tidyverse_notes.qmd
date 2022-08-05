@@ -1,0 +1,14 @@
+---
+title: "Tidyverse Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+Should I split this up into each package? Make a glossery of each function I've used tied to the example where I used it?
