@@ -100,6 +100,8 @@ Now, the Spark ML library only works with numeric data. But we still want to use
 
 
 ```{python}
+#| eval: false
+
 from pyspark.ml.feature import StringIndexer
 
 dataset = StringIndexer(
