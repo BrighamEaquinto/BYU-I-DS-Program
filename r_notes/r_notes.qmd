@@ -1,0 +1,31 @@
+---
+title: "R Notes"
+format: 
+  html:
+    toc: false
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+
+How to determing the datatype of anything? Use `class()`
+
+Example: 
+
+```{r}
+#| eval: true
+
+var = c(1,2,3,4)
+class(var)
+
+string = "Hello world"
+class(string)
+
+class(iris$Sepal.Length)
+class(iris$Species)
+
+```

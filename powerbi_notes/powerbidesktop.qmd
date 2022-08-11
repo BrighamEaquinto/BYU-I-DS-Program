@@ -1,0 +1,22 @@
+---
+title: "PowerBI Desktop"
+format: 
+  html:
+    toc: true 
+    toc-depth: 5
+    toc-location: right
+    code-tools: true  
+    code-copy: true
+    code-fold: false
+    self-contained: true
+    anchor-sections: false
+    theme: cerulean
+---
+
+
+Editing interactions:
+
+- go to the format pane
+- click edit interactions
+- select the visual/table that you don't want affecting something else
+- hover over the table you don't want affected and click the cross-out button
