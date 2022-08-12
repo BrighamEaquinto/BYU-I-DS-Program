@@ -14,9 +14,19 @@ format:
 ---
 
 
-Editing interactions:
+# Editing interactions
 
 - go to the format pane
 - click edit interactions
 - select the visual/table that you don't want affecting something else
 - hover over the table you don't want affected and click the cross-out button
+
+
+# Measures
+
+Easiest way to make a new measure is to go to the Fields pane and click on the three dots of the table you want the measure to be in 
+
+
+# Questions: 
+
+- Is there a way to set default behaviors for things? Like haveing the 'visual boarder' option default to on instead of default to false?
