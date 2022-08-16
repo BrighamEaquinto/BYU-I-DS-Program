@@ -14,9 +14,47 @@ format:
 ---
 
 
-Editing interactions:
+# Editing interactions
 
 - go to the format pane
 - click edit interactions
 - select the visual/table that you don't want affecting something else
 - hover over the table you don't want affected and click the cross-out button
+
+
+# Measures
+
+Easiest way to make a new measure is to go to the Fields pane and click on the three dots of the table you want the measure to be in 
+
+
+# Questions: 
+
+- Is there a way to set default behaviors for things? Like haveing the 'visual boarder' option default to on instead of default to false?
+
+
+# Measures & Calculated Columns
+
+## Calculated Columns
+
+- The sigma symbol (summation notation) signifies a calculated column
+  - If put into a card it will default to sum. Don't mistake it for a measure since it appears as one number!
+  - The formula bar does not appear. 
+- The icon with the function notation, f(x), on top of a small data table is a calculated column that is non-numeric. It is created using DAX. 
+- The icon with the sigma symbol, Σ, on top of a small data table is a calculated column that is numeric. It is created using DAX. 
+
+## Measures
+
+- The calculator symbol signifies a measure
+  - if put into a card
+
+
+## Notes: 
+
+- measures are hard-coded. For example it takes the sum, average, min, and so on. Calculated columns can be many different summarizations as desired since all the data is available. This is true for at least for shown in card-view. 
+- Calculated columns are more computationally expensive than the very computationally cheap measures.
+- SUM() 
+  - does not work like Excel's SUM() where it taked multiple columns. Only one column is accepted. There's no way aroun it. 
+- SUMX() 
+  - does not appear in the Data View pane
+  - it is an iterative function rather than a aggregate function.  
+- Filters modify DAX-made measures and columns. Filters come from many different. 
