@@ -11,6 +11,28 @@ format:
     theme: cerulean
 ---
 
+
+
+# When to use Neural Nets
+
+  - Computer vision
+  - Audio data
+  - "Generative Deep Learning"
+  - "Reinforcement Learning"
+  - "Graph Data"
+
+  - Structured Data?
+  - NLP?
+  - Time series?
+
+
+Use neural nets for unstructured data. This included any kind of photo/video data and any speech data.
+
+Use non-neural networks for structured data machine learning problems like regression, classification, and clustering. 
+
+Overlap of both: NLP and time series
+
+
 # Vocabularly
 
   - neuron: is that the "nodes"/circles that make up the layers?
@@ -21,9 +43,6 @@ format:
   - learning rate
     - why does that matter?
   - bactch size
-  - 
-
-
 
 
 
@@ -112,102 +131,6 @@ Activation layers:
 
 <br><br>
 
-
-
-```{python}
-import pandas as pd
-import numpy as np
-
-from keras.models import Sequential
-from keras.layers import Dense
-import tensorflow
-
-from sklearn.model_selection import train_test_split 
-from sklearn.metrics import mean_squared_error, r2_score
-
-import seaborn as sns
-
-data = pd.read_excel("C:/Users/brigh/Downloads/ENB2012_data.xlsx")
-# data = pd.read_excel('assets/ENB2012_data.xlsx')
-
-```
-
-
-```{python}
-
-X = data.drop(axis=1, columns=['Y1', 'Y2'])
-y = pd.concat([data['Y1'], data['Y2']], axis=1)
-
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 314)
-
-```
-
-
-```{python}
-model = Sequential()
-model.add(Dense(8, input_shape=(8,), activation='relu'))
-model.add(Dense(6, activation='relu'))
-model.add(Dense(6, activation='relu'))
-# model.add(Dense(4, activation='relu'))
-model.add(Dense(4, activation='relu'))
-model.add(Dense(2, activation='relu'))
-
-```
-
-```{python}
-#| include: false
-#| echo: false
-
-model.compile('adam', loss='mse', metrics=['mse'])
-history = model.fit(x_train, y_train, epochs=100, validation_split = 0.2, batch_size = 10, shuffle = True)
-```
-
-```{python}
-
-y_pred = model.predict(x_test)
-
-print(f'R-Squared: {r2_score(y_test, y_pred):.4}')
-print(f'Mean Squared Error: {mean_squared_error(y_test, y_pred, squared = True):.4}')
-
-```
-
-```{python}
-from plot_keras_history import show_history, plot_history
-import matplotlib.pyplot as plt
-```
-
-```{python}
-show_history(history)
-plot_history(history)
-plt.close()
-```
-
-```{python}
-model_history = pd.DataFrame({
-  'epoch': pd.Series(history.epoch), 
-  'loss': pd.Series(history.history.values())[0]
-  })
-model_history.head()
-```
-
-```{python}
-#| eval: false
-#| include: false
-#| echo: false
-
-print()
-
-# plot = (
-#   sns.lineplot(
-#     x="epoch", 
-#     y="loss", 
-#     data=model_history)
-#   .set(
-#     # title = f'Last Value: {model_history['loss'].min().round(4)}'
-#     title = {model_history['loss'].min().round(4)}
-#     ))
-# plot
-```
 
 
 
