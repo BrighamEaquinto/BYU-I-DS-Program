@@ -11,4 +11,234 @@ format:
     theme: cerulean
 ---
 
-# Keras!!
+# Vocabularly
+
+  - neuron: is that the "nodes"/circles that make up the layers?
+  - layers
+  - Sequential
+  - Dense
+  - optmizer 
+  - learning rate
+    - why does that matter?
+  - bactch size
+  - 
+
+
+
+
+
+Layer activations:
+
+  - relu function
+  - sigmoid function
+  - softmax function
+  - softplus function
+  - softsign function
+  - tanh function
+  - selu function
+  - elu function
+  - exponential function
+
+
+Core layers
+
+  -  Input object
+  -  Dense layer
+  -  Activation layer
+  -  Embedding layer
+  -  Masking layer
+  -  Lambda layer
+
+Convolution layers
+  -  Conv1D layer
+  -  Conv2D layer
+  -  Conv3D layer
+  -  SeparableConv1D layer
+  -  SeparableConv2D layer
+  -  DepthwiseConv2D layer
+  -  Conv1DTranspose layer
+  -  Conv2DTranspose layer
+  -  Conv3DTranspose layer
+
+Pooling layers
+  -  MaxPooling1D layer
+  -  MaxPooling2D layer
+  -  MaxPooling3D layer
+  -  AveragePooling1D layer
+  -  AveragePooling2D layer
+  -  AveragePooling3D layer
+  -  GlobalMaxPooling1D layer
+  -  GlobalMaxPooling2D layer
+  -  GlobalMaxPooling3D layer
+  -  GlobalAveragePooling1D layer
+  -  GlobalAveragePooling2D layer
+  -  GlobalAveragePooling3D layer
+
+Recurrent layers
+  -  LSTM layer
+  -  GRU layer
+  -  SimpleRNN layer
+  -  TimeDistributed layer
+  -  Bidirectional layer
+  -  ConvLSTM1D layer
+  -  ConvLSTM2D layer
+  -  ConvLSTM3D layer
+  -  Base RNN layer
+
+<br>
+...many more...
+<br>
+
+Activation layers:
+- ReLU layer
+- Softmax layer
+- LeakyReLU layer
+- PReLU layer
+- ELU layer
+- ThresholdedReLU layer
+
+
+
+<label for="dog-names">Choose a dog name:</label>
+<select name="dog-names" id="dog-names">
+    <option value="rigatoni">Rigatoni</option>
+  <option value="dave">Dave</option>
+  <option value="pumpernickel">Pumpernickel</option>
+  <option value="reeses">Reeses</option>
+</select>
+
+
+
+
+<br><br>
+
+
+
+```{python}
+import pandas as pd
+import numpy as np
+
+from keras.models import Sequential
+from keras.layers import Dense
+import tensorflow
+
+from sklearn.model_selection import train_test_split 
+from sklearn.metrics import mean_squared_error, r2_score
+
+import seaborn as sns
+
+data = pd.read_excel("C:/Users/brigh/Downloads/ENB2012_data.xlsx")
+# data = pd.read_excel('assets/ENB2012_data.xlsx')
+
+```
+
+
+```{python}
+
+X = data.drop(axis=1, columns=['Y1', 'Y2'])
+y = pd.concat([data['Y1'], data['Y2']], axis=1)
+
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 314)
+
+```
+
+
+```{python}
+model = Sequential()
+model.add(Dense(8, input_shape=(8,), activation='relu'))
+model.add(Dense(6, activation='relu'))
+model.add(Dense(6, activation='relu'))
+# model.add(Dense(4, activation='relu'))
+model.add(Dense(4, activation='relu'))
+model.add(Dense(2, activation='relu'))
+
+```
+
+```{python}
+#| include: false
+#| echo: false
+
+model.compile('adam', loss='mse', metrics=['mse'])
+history = model.fit(x_train, y_train, epochs=100, validation_split = 0.2, batch_size = 10, shuffle = True)
+```
+
+```{python}
+
+y_pred = model.predict(x_test)
+
+print(f'R-Squared: {r2_score(y_test, y_pred):.4}')
+print(f'Mean Squared Error: {mean_squared_error(y_test, y_pred, squared = True):.4}')
+
+```
+
+```{python}
+from plot_keras_history import show_history, plot_history
+import matplotlib.pyplot as plt
+```
+
+```{python}
+show_history(history)
+plot_history(history)
+plt.close()
+```
+
+```{python}
+model_history = pd.DataFrame({
+  'epoch': pd.Series(history.epoch), 
+  'loss': pd.Series(history.history.values())[0]
+  })
+model_history.head()
+```
+
+```{python}
+#| eval: false
+#| include: false
+#| echo: false
+
+print()
+
+# plot = (
+#   sns.lineplot(
+#     x="epoch", 
+#     y="loss", 
+#     data=model_history)
+#   .set(
+#     # title = f'Last Value: {model_history['loss'].min().round(4)}'
+#     title = {model_history['loss'].min().round(4)}
+#     ))
+# plot
+```
+
+
+
+# Success Metrics for Regression
+
+    - Mean Squared Error (MSE)
+    - R-Squared
+
+Others:
+    - Sum of Squared Error (SSE)
+    - Sum of of Squared Regression Error (SSR)
+    - Total Sum of Squared (SSTO)
+
+
+# Success Metrics for Classification
+
+    - Accuracy
+    - Precision 
+    - Recall 
+    - F1 
+    - AUC/ROC
+
+
+
+
+
+<br>
+
+play with finances
+plan party 
+invite party
+winco 
+appnt
+return dresses 
