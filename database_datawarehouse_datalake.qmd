@@ -25,8 +25,24 @@ Star and Snowflake schemas differ by dimentionality
 
 How are databases connected in data warehouses? Can you query a data warehouse? (Can multiple databases be connected in the same query?)
 
+
 - The Fact table is the most granular table of the database. It can/should be defined as something; like "For each student, semester, course, section, there is one grade, there is one _____"
     - this is a many-to-one mostly 
     - the exception is survey data when one student can take many surveys
 
+
 What about for each student there is one pell grant/scholarship and you don't need all the granularity
+
+
+
+OLTP and OLAP: The two terms look similar but refer to different kinds of systems. Online transaction processing (OLTP) captures, stores, and processes data from transactions in real time. Online analytical processing (OLAP) uses complex queries to analyze aggregated historical data from OLTP systems.
+
+
+Links found: 
+- https://github.com/orgs/microsoft/repositories
+- https://github.com/microsoft/sql-server-samples 
+- https://github.com/microsoft/mssql-docker
+- https://github.com/microsoft/sql-server-samples/tree/master/samples/databases
+- https://www.microsoft.com/en-us/sql-server/developer-get-started/python/windows
+- https://github.com/mkleehammer/pyodbc
+- https://docs.microsoft.com/en-us/sql/sql-server/?redirectedfrom=MSDN&view=sql-server-ver16
