@@ -3,6 +3,8 @@ title: "Data['Base', 'Warehouse', 'Lake']"
 format: html
 ---
 
+## Conversation with Mike 8/24/22
+
 Database schemas depend on the purpose
 - Star and Snowflake is more useful for read purposes
     - their nature is longer and wider tables. This is because there should be as little joining as possible
