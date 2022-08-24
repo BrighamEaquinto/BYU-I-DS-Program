@@ -1,0 +1,30 @@
+---
+title: "Data['Base', 'Warehouse', 'Lake']"
+format: html
+---
+
+Database schemas depend on the purpose
+- Star and Snowflake is more useful for read purposes
+    - their nature is longer and wider tables. This is because there should be as little joining as possible
+- T-SQL (OLTP AdventurWorks 2008 Schema) is more useful for write purposes 
+    - Example of an advantageous time to use this is ___________
+
+
+<br>
+
+
+Star and Snowflake schemas differ by dimentionality 
+- If the Fact tables(s?) has dimentional tables and the dimentional tables do not have dimentional tables, it is a Star schema
+- If the Fact tables(s?) has dimentional tables and the dimentional tables have dimentional tables, it is a Snowflake schema
+
+
+<br>
+
+
+How are databases connected in data warehouses? Can you query a data warehouse? (Can multiple databases be connected in the same query?)
+
+- The Fact table is the most granular table of the database. It can/should be defined as something; like "For each student, semester, course, section, there is one grade, there is one _____"
+    - this is a many-to-one mostly 
+    - the exception is survey data when one student can take many surveys
+
+What about for each student there is one pell grant/scholarship and you don't need all the granularity
