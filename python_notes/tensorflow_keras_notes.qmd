@@ -11,4 +11,157 @@ format:
     theme: cerulean
 ---
 
-# Keras!!
+
+
+# When to use Neural Nets
+
+  - Computer vision
+  - Audio data
+  - "Generative Deep Learning"
+  - "Reinforcement Learning"
+  - "Graph Data"
+
+  - Structured Data?
+  - NLP?
+  - Time series?
+
+
+Use neural nets for unstructured data. This included any kind of photo/video data and any speech data.
+
+Use non-neural networks for structured data machine learning problems like regression, classification, and clustering. 
+
+Overlap of both: NLP and time series
+
+
+# Vocabularly
+
+  - neuron: is that the "nodes"/circles that make up the layers?
+  - layers
+  - Sequential
+  - Dense
+  - optmizer 
+  - learning rate
+    - why does that matter?
+  - bactch size
+
+
+
+Layer activations:
+
+  - relu function
+  - sigmoid function
+  - softmax function
+  - softplus function
+  - softsign function
+  - tanh function
+  - selu function
+  - elu function
+  - exponential function
+
+
+Core layers
+
+  -  Input object
+  -  Dense layer
+  -  Activation layer
+  -  Embedding layer
+  -  Masking layer
+  -  Lambda layer
+
+Convolution layers
+  -  Conv1D layer
+  -  Conv2D layer
+  -  Conv3D layer
+  -  SeparableConv1D layer
+  -  SeparableConv2D layer
+  -  DepthwiseConv2D layer
+  -  Conv1DTranspose layer
+  -  Conv2DTranspose layer
+  -  Conv3DTranspose layer
+
+Pooling layers
+  -  MaxPooling1D layer
+  -  MaxPooling2D layer
+  -  MaxPooling3D layer
+  -  AveragePooling1D layer
+  -  AveragePooling2D layer
+  -  AveragePooling3D layer
+  -  GlobalMaxPooling1D layer
+  -  GlobalMaxPooling2D layer
+  -  GlobalMaxPooling3D layer
+  -  GlobalAveragePooling1D layer
+  -  GlobalAveragePooling2D layer
+  -  GlobalAveragePooling3D layer
+
+Recurrent layers
+  -  LSTM layer
+  -  GRU layer
+  -  SimpleRNN layer
+  -  TimeDistributed layer
+  -  Bidirectional layer
+  -  ConvLSTM1D layer
+  -  ConvLSTM2D layer
+  -  ConvLSTM3D layer
+  -  Base RNN layer
+
+<br>
+...many more...
+<br>
+
+Activation layers:
+- ReLU layer
+- Softmax layer
+- LeakyReLU layer
+- PReLU layer
+- ELU layer
+- ThresholdedReLU layer
+
+
+
+<label for="dog-names">Choose a dog name:</label>
+<select name="dog-names" id="dog-names">
+    <option value="rigatoni">Rigatoni</option>
+  <option value="dave">Dave</option>
+  <option value="pumpernickel">Pumpernickel</option>
+  <option value="reeses">Reeses</option>
+</select>
+
+
+
+
+<br><br>
+
+
+
+
+# Success Metrics for Regression
+
+    - Mean Squared Error (MSE)
+    - R-Squared
+
+Others:
+    - Sum of Squared Error (SSE)
+    - Sum of of Squared Regression Error (SSR)
+    - Total Sum of Squared (SSTO)
+
+
+# Success Metrics for Classification
+
+    - Accuracy
+    - Precision 
+    - Recall 
+    - F1 
+    - AUC/ROC
+
+
+
+
+
+<br>
+
+play with finances
+plan party 
+invite party
+winco 
+appnt
+return dresses 
